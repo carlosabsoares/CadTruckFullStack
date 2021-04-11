@@ -28,7 +28,7 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Altera usuario de administração</summary>
         /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
         [HttpPut("user/update")]
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<GenericCommandResult> UpdateUser(
             [FromBody] UserUpdateCommand command,
@@ -40,7 +40,7 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Deleta usuario de administração</summary>
         /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
         [HttpDelete("user/delete")]
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<GenericCommandResult> DeleteUser(
             //[FromBody] CategoryDeleteCommand command,
@@ -55,7 +55,7 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Retorna usuário de administração</summary>
         /// <returns>Retorna usuário de administração</returns>
         [HttpGet("user/findAll")]
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(typeof(IList<User>), 200)]
         public async Task<IList<User>> FindAllUser(
             [FromServices] IUserRepository repository)
