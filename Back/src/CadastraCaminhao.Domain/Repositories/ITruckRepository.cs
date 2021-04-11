@@ -10,6 +10,6 @@ namespace CadastraCaminhao.Domain.Repositories
     public interface ITruckRepository
     {
         Task<Truck> GetById(string id);
-        Task<IList<Truck>> GetAll(string id) ;
+        Task<IList<Truck>> GetAll() ;
     }
 }

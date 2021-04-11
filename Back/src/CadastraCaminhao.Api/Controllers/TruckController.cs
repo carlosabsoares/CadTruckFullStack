@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CadastraCaminhao.Domain.Entities;
 using CadastraCaminhao.Domain.Handlers.Contracts;
+using CadastraCaminhao.Domain.Repositories;
 
 namespace CadastraCaminhao.Api.Controllers
 {
@@ -50,6 +52,29 @@ namespace CadastraCaminhao.Api.Controllers
             command.Id = id;
             
             return (GenericCommandResult)await handler.Handle(command);
+        }
+
+        /// <summary>Lista de todos caminhão</summary>
+        /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
+        [HttpGet("truck/getall")]
+        [Authorize]
+        [ProducesResponseType(typeof(IList<Truck>), 200)]
+        public async Task<IList<Truck>> GetAllTruck(
+            [FromServices] ITruckRepository repository)
+        {
+            return await repository.GetAll();
+        }
+
+        /// <summary>Busca de um caminhão</summary>
+        /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
+        [HttpGet("truck/getById")]
+        [Authorize]
+        [ProducesResponseType(typeof(Truck), 200)]
+        public async Task<Truck> GetByIdTruck(
+            [FromQuery] string id,
+            [FromServices] ITruckRepository repository)
+        {
+            return await repository.GetById(id);
         }
     }
 }

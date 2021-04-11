@@ -21,7 +21,7 @@ namespace CadastraCaminhao.Infra.Repositories
 
         public TruckRepository(){}
 
-        public async Task<IList<Truck>> GetAll(string id)
+        public async Task<IList<Truck>> GetAll()
         {
             return await _context.Trucks.AsNoTracking().ToListAsync();
         }

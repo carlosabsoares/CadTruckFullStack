@@ -61,7 +61,7 @@ namespace CadastraCaminhao.Domain.Handlers
             var _verify = await _userRepository.GetById(command.Id);
 
             if (_verify == null)
-                return new GenericCommandResult(false, HttpStatusCode.NotFound, "Não localizado na base");
+                return new GenericCommandResult(false, HttpStatusCode.NotFound, _verify);
 
             User _entity = new User();
             _entity.Id = command.Id;
@@ -82,10 +82,10 @@ namespace CadastraCaminhao.Domain.Handlers
             if (command.Invalid)
                 return new GenericCommandResult(false, HttpStatusCode.BadRequest, command.Notifications);
 
-            var _verify = await _userRepository.GetAll();
+            var _verify = await _userRepository.GetById(command.Id);
 
             if (_verify == null)
-                return new GenericCommandResult(false, HttpStatusCode.NotFound, "Não localizado na base");
+                return new GenericCommandResult(false, HttpStatusCode.NotFound, _verify);
 
             User _entity = new User();
             _entity.Id = command.Id;
