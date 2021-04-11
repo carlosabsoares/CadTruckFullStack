@@ -19,7 +19,6 @@ namespace CadastraCaminhao.Domain.Commands
                     .IsNotNullOrEmpty(Login, "Login", "Login not be null.")
                     .IsNotNullOrEmpty(Password, "Password", "Password not be null.")
                     .IsNotNullOrEmpty(Name, "Name", "Name not be null.")
-                    .IsNotNullOrEmpty(Email, "Email", "Email not be null.")
                     .IsEmail(Email, "Email", "Email not valid.")
             );
         }
