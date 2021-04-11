@@ -1,13 +1,12 @@
-﻿using System;
-using Flunt.Notifications;
+﻿using Flunt.Notifications;
 using Flunt.Validations;
+using System;
 
 namespace CadastraCaminhao.Domain.Commands
 {
     public class UserDeleteCommand : Notifiable, ICommand
     {
         public string Id { get; set; }
-
 
         public UserDeleteCommand(string id)
         {
@@ -23,6 +22,5 @@ namespace CadastraCaminhao.Domain.Commands
                     .IsTrue(Guid.TryParse(Id, out _), "Id", "This Id is not a valid guid.")
             );
         }
-
     }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
 namespace CadastraCaminhao.Domain.Commands
 {
-    public class GenericCommandResult: ICommandResult
+    public class GenericCommandResult : ICommandResult
     {
         public bool Success { get; set; }
         public HttpStatusCode Code { get; set; }
@@ -19,6 +14,5 @@ namespace CadastraCaminhao.Domain.Commands
             Code = code;
             Data = data;
         }
-
     }
 }

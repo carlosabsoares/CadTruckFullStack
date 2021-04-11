@@ -14,6 +14,10 @@ namespace CadastraCaminhao.Infra.Mapping
             modelBuilder.Entity<Truck>().HasKey(x => x.Id);
             modelBuilder.Entity<Truck>().HasIndex(x => x.Id);
 
+            modelBuilder.Entity<Truck>().Property(x => x.Description).HasColumnType("varchar(60)");
+            modelBuilder.Entity<Truck>().Property(x => x.Description).HasColumnName("description");
+            modelBuilder.Entity<Truck>().Property(x => x.Model).IsRequired();
+
             modelBuilder.Entity<Truck>().Property(x => x.Model).HasColumnType("varchar(2)");
             modelBuilder.Entity<Truck>().Property(x => x.Model).HasColumnName("model");
             modelBuilder.Entity<Truck>().Property(x => x.Model).IsRequired();
@@ -26,13 +30,11 @@ namespace CadastraCaminhao.Infra.Mapping
             modelBuilder.Entity<Truck>().Property(x => x.ModelYear).HasColumnName("modelYear");
             modelBuilder.Entity<Truck>().Property(x => x.ModelYear).IsRequired();
 
-
             modelBuilder.Entity<Truck>().Property(x => x.Color).HasColumnType("varchar(20)");
             modelBuilder.Entity<Truck>().Property(x => x.Color).HasColumnName("color");
 
             modelBuilder.Entity<Truck>().Property(x => x.Image).HasColumnType("varchar(80)");
             modelBuilder.Entity<Truck>().Property(x => x.Image).HasColumnName("image");
-
         }
     }
 }

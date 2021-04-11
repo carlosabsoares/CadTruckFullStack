@@ -2,7 +2,7 @@
 
 namespace CadastraCaminhao.Infra.Migrations
 {
-    public partial class Init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,6 +11,7 @@ namespace CadastraCaminhao.Infra.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "varchar(50)", nullable: false),
+                    description = table.Column<string>(type: "varchar(60)", nullable: true),
                     model = table.Column<int>(type: "varchar(2)", nullable: false),
                     yearOfManufacture = table.Column<int>(type: "int(4)", nullable: false),
                     modelYear = table.Column<int>(type: "int(4)", nullable: false),

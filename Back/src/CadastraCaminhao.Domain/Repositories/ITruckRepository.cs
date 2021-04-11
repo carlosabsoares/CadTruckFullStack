@@ -1,15 +1,13 @@
-﻿using System;
+﻿using CadastraCaminhao.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Entities;
 
 namespace CadastraCaminhao.Domain.Repositories
 {
     public interface ITruckRepository
     {
         Task<Truck> GetById(string id);
-        Task<IList<Truck>> GetAll() ;
+
+        Task<IList<Truck>> GetAll();
     }
 }

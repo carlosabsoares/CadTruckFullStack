@@ -1,13 +1,11 @@
 ﻿using CadastraCaminhao.Domain.Commands;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CadastraCaminhao.Domain.Entities;
 using CadastraCaminhao.Domain.Handlers.Contracts;
 using CadastraCaminhao.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CadastraCaminhao.Api.Controllers
 {
@@ -46,11 +44,11 @@ namespace CadastraCaminhao.Api.Controllers
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<GenericCommandResult> DeleteTruck(
             [FromQuery] string id,
-            [FromServices] IHandler<TruckUpdateCommand> handler)
+            [FromServices] IHandler<TruckDeleteCommand> handler)
         {
-            TruckUpdateCommand command = new TruckUpdateCommand();
+            TruckDeleteCommand command = new TruckDeleteCommand();
             command.Id = id;
-            
+
             return (GenericCommandResult)await handler.Handle(command);
         }
 

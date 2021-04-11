@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Commands;
+﻿using CadastraCaminhao.Domain.Commands;
 using Xunit;
 
 namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User

@@ -1,9 +1,5 @@
-﻿using System;
+﻿using CadastraCaminhao.Domain.Commands;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Commands;
 using Xunit;
 
 namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
@@ -26,7 +22,6 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
 
             Assert.True(_command.Valid);
             Assert.False(_command.Invalid);
-
 
             Assert.NotEmpty(_command.Email);
             Assert.NotEmpty(_command.Login);
@@ -52,7 +47,6 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
 
             Assert.False(_command.Valid);
             Assert.True(_command.Invalid);
-
 
             Assert.NotEmpty(_command.Email);
             Assert.NotEmpty(_command.Login);
@@ -82,7 +76,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
             Assert.False(_command.Valid);
             Assert.True(_command.Invalid);
 
-            if(param == null)
+            if (param == null)
             {
                 Assert.Null(_command.Email);
             }
@@ -91,13 +85,11 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
                 Assert.Empty(_command.Email);
             }
 
-            
             Assert.NotEmpty(_command.Login);
             Assert.NotEmpty(_command.Name);
             Assert.NotEmpty(_command.Password);
             Assert.NotEmpty(_command.Role);
             Assert.True(((List<Flunt.Notifications.Notification>)_command.Notifications).Count == 1);
-
         }
 
         [Theory]
@@ -129,7 +121,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
             {
                 Assert.Empty(_command.Login);
             }
-            
+
             Assert.NotEmpty(_command.Name);
             Assert.NotEmpty(_command.Password);
             Assert.NotEmpty(_command.Role);
@@ -173,8 +165,5 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
             Assert.True(((List<Flunt.Notifications.Notification>)_command.Notifications).Count == 1);
             Assert.Equal("Password not be null.", _notification[0].Message);
         }
-
-
-
     }
 }

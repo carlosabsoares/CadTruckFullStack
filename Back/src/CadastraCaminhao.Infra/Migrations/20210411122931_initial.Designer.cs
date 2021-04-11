@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastraCaminhao.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210410215708_Init")]
-    partial class Init
+    [Migration("20210411122931_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,10 @@ namespace CadastraCaminhao.Infra.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("varchar(20)")
                         .HasColumnName("color");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(60)")
+                        .HasColumnName("description");
 
                     b.Property<string>("Image")
                         .HasColumnType("varchar(80)")

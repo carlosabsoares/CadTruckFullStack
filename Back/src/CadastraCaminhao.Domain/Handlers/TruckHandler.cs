@@ -1,11 +1,10 @@
 ﻿using CadastraCaminhao.Domain.Commands;
+using CadastraCaminhao.Domain.Entities;
 using CadastraCaminhao.Domain.Handlers.Contracts;
+using CadastraCaminhao.Domain.Repositories;
 using Flunt.Notifications;
-using System;
 using System.Net;
 using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Entities;
-using CadastraCaminhao.Domain.Repositories;
 
 namespace CadastraCaminhao.Domain.Handlers
 {
@@ -14,7 +13,6 @@ namespace CadastraCaminhao.Domain.Handlers
             IHandler<TruckDeleteCommand>,
             IHandler<TruckUpdateCommand>
     {
-
         private readonly IContextRepository _contextRepository;
         private readonly ITruckRepository _truckRepository;
 
@@ -31,9 +29,10 @@ namespace CadastraCaminhao.Domain.Handlers
                 return new GenericCommandResult(false, HttpStatusCode.BadRequest, command.Notifications);
 
             Truck _entity = new Truck();
+            _entity.Description = command.Description;
             _entity.Color = command.Color;
             _entity.Image = command.Image;
-            _entity.Model =  (EnumModel)command.Model ;
+            _entity.Model = (EnumModel)command.Model;
             _entity.ModelYear = command.ModelYear;
 
             var _result = await _contextRepository.Add(_entity);
@@ -54,8 +53,8 @@ namespace CadastraCaminhao.Domain.Handlers
 
             if (_verify == null)
                 return new GenericCommandResult(false, HttpStatusCode.NotFound, _verify);
-            
-            var _result = await _contextRepository.Delete(command.Id);
+
+            var _result = await _contextRepository.Delete(_verify);
 
             if (!_result)
                 return new GenericCommandResult(false, HttpStatusCode.BadRequest, _result);
@@ -73,14 +72,15 @@ namespace CadastraCaminhao.Domain.Handlers
 
             if (_verify == null)
                 return new GenericCommandResult(false, HttpStatusCode.NotFound, _verify);
-            
+
             Truck _entity = new Truck();
             _entity.Id = command.Id;
+            _entity.Description = command.Description;
             _entity.Color = command.Color;
             _entity.Image = command.Image;
             _entity.Model = (EnumModel)command.Model;
             _entity.ModelYear = command.ModelYear;
-            
+
             var _result = await _contextRepository.Update(_entity);
 
             if (!_result)

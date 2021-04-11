@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Entities;
+﻿using CadastraCaminhao.Domain.Entities;
 using CadastraCaminhao.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CadastraCaminhao.Infra.Repositories
 {
@@ -18,20 +16,18 @@ namespace CadastraCaminhao.Infra.Repositories
             _context = context;
         }
 
-
         public async Task<IList<User>> GetAll()
         {
             var query = _context.Users.AsNoTracking();
 
-            return await query.Select(x => new User { Id = x.Id, Email = x.Email, Login = x.Login, Name = x.Name, Role = x.Role }).ToListAsync();
-
+            return await query.Select(x => new User { Id = x.Id, Email = x.Email, Login = x.Login, Name = x.Name, Password = "*******", Role = x.Role }).ToListAsync();
         }
 
         public async Task<User> GetById(string id)
         {
             var query = _context.Users.AsNoTracking();
 
-            return await query.Where(x => x.Id.ToString() == id).FirstOrDefaultAsync();
+            return await query.Select(x => new User { Id = x.Id, Email = x.Email, Login = x.Login, Name = x.Name, Password = "*******", Role = x.Role }).FirstOrDefaultAsync();
         }
 
         public async Task<User> GetValidate(string login, string password)
@@ -43,6 +39,7 @@ namespace CadastraCaminhao.Infra.Repositories
                 Id = x.Id,
                 Email = x.Email,
                 Login = x.Login,
+                Password = "*******",
                 Name = x.Name,
                 Role = x.Role
             }).FirstOrDefaultAsync();

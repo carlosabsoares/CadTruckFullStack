@@ -1,13 +1,11 @@
 ﻿using CadastraCaminhao.Domain.Commands;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CadastraCaminhao.Domain.Entities;
 using CadastraCaminhao.Domain.Handlers.Contracts;
 using CadastraCaminhao.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CadastraCaminhao.Api.Controllers
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Repositories;
+﻿using CadastraCaminhao.Domain.Repositories;
 using CadastraCaminhao.Infra.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

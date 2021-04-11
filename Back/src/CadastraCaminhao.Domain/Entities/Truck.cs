@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CadastraCaminhao.Domain.Entities
 {
     public class Truck
     {
         public string Id { get; set; }
+        public string Description { get; set; }
         public EnumModel Model { get; set; }
         public int YearOfManufacture { get; set; }
         public int ModelYear { get; set; }
@@ -18,11 +15,8 @@ namespace CadastraCaminhao.Domain.Entities
 
         public Truck()
         {
-            Id = new Guid().ToString();
+            Id = Guid.NewGuid().ToString();
             YearOfManufacture = DateTime.Now.Year;
         }
-
     }
-
-
 }

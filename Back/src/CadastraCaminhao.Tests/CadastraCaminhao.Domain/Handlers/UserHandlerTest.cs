@@ -3,11 +3,7 @@ using CadastraCaminhao.Domain.Entities;
 using CadastraCaminhao.Domain.Handlers;
 using CadastraCaminhao.Domain.Repositories;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -83,8 +79,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
                 Role = "Administrator"
             };
 
-
-            mockUserRepository.Setup(x=> x.GetById(It.IsAny<string>())).ReturnsAsync(_user);
+            mockUserRepository.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(_user);
             mockContextRepository.Setup(x => x.Delete(It.IsAny<User>())).ReturnsAsync(true);
 
             UserHandler _handler = new UserHandler(mockContextRepository.Object, mockUserRepository.Object);
@@ -113,7 +108,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
                 Password = "senha",
                 Role = "Administrator"
             };
-            
+
             mockUserRepository.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(_user);
             mockContextRepository.Setup(x => x.Delete(It.IsAny<User>())).ReturnsAsync(false);
 
@@ -176,12 +171,10 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             UserHandler _handler = new UserHandler(mockContextRepository.Object, mockUserRepository.Object);
 
             var _return = await _handler.Handle(userValidateAccessCommand);
-            
 
             Assert.True(_return.Success);
             Assert.Equal(HttpStatusCode.OK, _return.Code);
             Assert.NotNull(_return.Data);
-
         }
 
         [Fact]
@@ -196,7 +189,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             userValidateAccessCommand.Password = "password";
 
             User _user = new User();
-            _user = null ;
+            _user = null;
 
             mockUserRepository.Setup(x => x.GetValidate(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(_user);
             //mockContextRepository.Setup(x => x.Delete(It.IsAny<User>())).ReturnsAsync(true);
@@ -205,11 +198,9 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
 
             var _return = await _handler.Handle(userValidateAccessCommand);
 
-
             Assert.False(_return.Success);
             Assert.Equal(HttpStatusCode.NotFound, _return.Code);
             Assert.Null(_return.Data);
-
         }
 
         [Fact]
@@ -244,11 +235,9 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
 
             var _return = await _handler.Handle(userUpdateCommand);
 
-
             Assert.True(_return.Success);
             Assert.Equal(HttpStatusCode.OK, _return.Code);
             Assert.True((bool)_return.Data);
-
         }
 
         [Fact]
@@ -283,11 +272,9 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
 
             var _return = await _handler.Handle(userUpdateCommand);
 
-
             Assert.False(_return.Success);
             Assert.Equal(HttpStatusCode.BadRequest, _return.Code);
             Assert.False((bool)_return.Data);
-
         }
 
         [Fact]
@@ -315,12 +302,9 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
 
             var _return = await _handler.Handle(userUpdateCommand);
 
-
             Assert.False(_return.Success);
             Assert.Equal(HttpStatusCode.NotFound, _return.Code);
             Assert.Null(_return.Data);
-
         }
-
     }
 }

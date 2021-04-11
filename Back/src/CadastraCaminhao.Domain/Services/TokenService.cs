@@ -1,9 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using CadastraCaminhao.Domain.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using CadastraCaminhao.Domain.Entities;
 
 namespace CadastraCaminhao.Domain.Services
 {

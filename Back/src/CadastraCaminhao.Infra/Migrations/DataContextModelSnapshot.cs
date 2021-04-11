@@ -25,6 +25,10 @@ namespace CadastraCaminhao.Infra.Migrations
                         .HasColumnType("varchar(20)")
                         .HasColumnName("color");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(60)")
+                        .HasColumnName("description");
+
                     b.Property<string>("Image")
                         .HasColumnType("varchar(80)")
                         .HasColumnName("image");

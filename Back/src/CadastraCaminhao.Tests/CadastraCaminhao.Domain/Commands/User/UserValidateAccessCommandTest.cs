@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Commands;
+﻿using CadastraCaminhao.Domain.Commands;
 using Xunit;
 
 namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
@@ -24,8 +19,8 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
         }
 
         [Theory]
-        [InlineData("login","")]
-        [InlineData("login",null)]
+        [InlineData("login", "")]
+        [InlineData("login", null)]
         [InlineData("", "password")]
         [InlineData(null, "password")]
         [InlineData(null, null)]
@@ -40,7 +35,6 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.User
 
             Assert.False(_command.Valid);
             Assert.True(_command.Invalid);
-            
         }
     }
 }

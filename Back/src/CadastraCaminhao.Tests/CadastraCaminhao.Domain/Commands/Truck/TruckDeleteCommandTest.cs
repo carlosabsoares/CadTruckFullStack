@@ -1,5 +1,4 @@
-﻿using System;
-using CadastraCaminhao.Domain.Commands;
+﻿using CadastraCaminhao.Domain.Commands;
 using Xunit;
 
 namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Commands.Truck

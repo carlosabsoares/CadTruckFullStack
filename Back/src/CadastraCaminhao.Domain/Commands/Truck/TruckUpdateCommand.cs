@@ -8,11 +8,11 @@ namespace CadastraCaminhao.Domain.Commands
     public class TruckUpdateCommand : Notifiable, ICommand
     {
         public string Id { get; set; }
+        public string Description { get; set; }
         public int Model { get; set; }
         public int ModelYear { get; set; }
         public string Color { get; set; }
         public string Image { get; set; }
-
 
         public void Validate()
         {
@@ -20,6 +20,7 @@ namespace CadastraCaminhao.Domain.Commands
                 new Contract()
                     .Requires()
                     .IsNotNullOrEmpty(Id, "Id", "Id not be null.")
+                    .IsNotNullOrEmpty(Description, "Description", "Description not be null.")
                     .IsTrue(Guid.TryParse(Id, out _), "Id", "This Id is not a valid guid.")
                     .IsBetween(ModelYear, DateTime.Now.Year, (DateTime.Now.Year + 1), "ModelYear", "The model year must be the current year or the year after.")
                     .IsNotNullOrEmpty(Model.ToString(), "Model", "Model not be null.")

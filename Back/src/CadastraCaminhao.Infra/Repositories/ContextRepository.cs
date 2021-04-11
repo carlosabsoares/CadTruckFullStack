@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CadastraCaminhao.Domain.Repositories;
 using System.Threading.Tasks;
-using CadastraCaminhao.Domain.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace CadastraCaminhao.Infra.Repositories
 {
@@ -28,11 +23,11 @@ namespace CadastraCaminhao.Infra.Repositories
             _context.Remove(entity);
             return (await _context.SaveChangesAsync()) > 0;
         }
+
         public async Task<bool> Update<T>(T entity) where T : class
         {
             _context.Update(entity);
             return (await _context.SaveChangesAsync()) > 0;
         }
-        
     }
 }

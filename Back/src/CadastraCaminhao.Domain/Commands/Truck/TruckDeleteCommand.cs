@@ -1,6 +1,6 @@
-﻿using System;
-using Flunt.Notifications;
+﻿using Flunt.Notifications;
 using Flunt.Validations;
+using System;
 
 namespace CadastraCaminhao.Domain.Commands
 {
@@ -15,7 +15,6 @@ namespace CadastraCaminhao.Domain.Commands
 
         public TruckDeleteCommand()
         {
-            
         }
 
         public void Validate()
@@ -24,7 +23,7 @@ namespace CadastraCaminhao.Domain.Commands
                 new Contract()
                     .Requires()
                     .IsNotNullOrEmpty(Id, "Id", "Id not be null.")
-                    .IsTrue( Guid.TryParse(Id,out _), "Id", "This Id is not a valid guid.")
+                    .IsTrue(Guid.TryParse(Id, out _), "Id", "This Id is not a valid guid.")
             );
         }
     }
