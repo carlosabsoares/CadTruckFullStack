@@ -210,7 +210,6 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             var mockUserRepository = new Mock<IUserRepository>();
 
             UserUpdateCommand userUpdateCommand = new UserUpdateCommand();
-
             userUpdateCommand.Id = "04690063-39c2-4d86-8bf1-1ffbfb4503a2";
             userUpdateCommand.Login = "login";
             userUpdateCommand.Email = "email@email.com";
@@ -238,6 +237,13 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             Assert.True(_return.Success);
             Assert.Equal(HttpStatusCode.OK, _return.Code);
             Assert.True((bool)_return.Data);
+
+            Assert.Equal("email@email.com", _user.Email);
+            Assert.Equal("b627435c-45ed-43e0-8969-e20ae10b4f21", _user.Id);
+            Assert.Equal("login", _user.Login);
+            Assert.Equal("name", _user.Name);
+            Assert.Equal("senha", _user.Password);
+            Assert.Equal("Administrator", _user.Role);
         }
 
         [Fact]

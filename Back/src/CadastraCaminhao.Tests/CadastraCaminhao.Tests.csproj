@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <Folder Include="CadastraCaminhao.Domain\Querys\" />
-    <Folder Include="CadastraCaminhao.Infra\" />
+    <Folder Include="CadastraCaminhao.Infra\Repository\" />
   </ItemGroup>
 
 </Project>

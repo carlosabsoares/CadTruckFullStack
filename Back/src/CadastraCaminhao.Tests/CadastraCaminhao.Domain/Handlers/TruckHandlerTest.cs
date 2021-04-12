@@ -22,6 +22,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
 
             trunlInsertCommand.Color = "Blue";
             trunlInsertCommand.Image = "img.jpg";
+            trunlInsertCommand.Description = "desciption";
             trunlInsertCommand.Model = 1;
             trunlInsertCommand.ModelYear = DateTime.Now.Year;
 
@@ -46,6 +47,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
 
             trunlInsertCommand.Color = "Blue";
             trunlInsertCommand.Image = "img.jpg";
+            trunlInsertCommand.Description = "desciption";
             trunlInsertCommand.Model = 1;
             trunlInsertCommand.ModelYear = DateTime.Now.Year;
 
@@ -71,6 +73,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             trunlUpdateCommand.Id = "45f65a56-e30d-4a61-8e40-e14a4cc35ce9";
             trunlUpdateCommand.Color = "Blue";
             trunlUpdateCommand.Image = "img.jpg";
+            trunlUpdateCommand.Description = "description";
             trunlUpdateCommand.Model = 1;
             trunlUpdateCommand.ModelYear = DateTime.Now.Year;
 
@@ -79,6 +82,8 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             _truck.Color = "Red";
             _truck.Image = "img1.jpg";
             _truck.Model = EnumModel.FH;
+            _truck.Description = "description";
+            _truck.YearOfManufacture = DateTime.Now.Year;
             _truck.ModelYear = DateTime.Now.Year;
 
             mockTruckRepository.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(_truck);
@@ -91,6 +96,15 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             Assert.True(_return.Success);
             Assert.Equal(HttpStatusCode.OK, _return.Code);
             Assert.True((bool)_return.Data);
+
+            Assert.Equal("45f65a56-e30d-4a61-8e40-e14a4cc35ce9", _truck.Id);
+            Assert.Equal("Red", _truck.Color);
+            Assert.Equal("img1.jpg", _truck.Image);
+            Assert.Equal(EnumModel.FH, _truck.Model);
+            Assert.Equal(DateTime.Now.Year, _truck.ModelYear);
+            Assert.Equal(DateTime.Now.Year, _truck.YearOfManufacture);
+            Assert.Equal("description", _truck.Description);
+
         }
 
         [Fact]
@@ -104,6 +118,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             trunlUpdateCommand.Id = "45f65a56-e30d-4a61-8e40-e14a4cc35ce9";
             trunlUpdateCommand.Color = "Blue";
             trunlUpdateCommand.Image = "img.jpg";
+            trunlUpdateCommand.Description = "desciption";
             trunlUpdateCommand.Model = 1;
             trunlUpdateCommand.ModelYear = DateTime.Now.Year;
 
@@ -133,6 +148,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             trunlUpdateCommand.Id = "45f65a56-e30d-4a61-8e40-e14a4cc35ce9";
             trunlUpdateCommand.Color = "Blue";
             trunlUpdateCommand.Image = "img.jpg";
+            trunlUpdateCommand.Description = "desciption";
             trunlUpdateCommand.Model = 1;
             trunlUpdateCommand.ModelYear = DateTime.Now.Year;
 
@@ -140,6 +156,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             _truck.Id = "45f65a56-e30d-4a61-8e40-e14a4cc35ce9";
             _truck.Color = "Red";
             _truck.Image = "img1.jpg";
+            _truck.Description = "desciption";
             _truck.Model = EnumModel.FH;
             _truck.ModelYear = DateTime.Now.Year;
 
@@ -169,11 +186,12 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             _truck.Id = "45f65a56-e30d-4a61-8e40-e14a4cc35ce9";
             _truck.Color = "Red";
             _truck.Image = "img1.jpg";
+            _truck.Description = "desciption";
             _truck.Model = EnumModel.FH;
             _truck.ModelYear = DateTime.Now.Year;
 
             mockTruckRepository.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(_truck);
-            mockContextRepository.Setup(x => x.Delete(It.IsAny<string>())).ReturnsAsync(true);
+            mockContextRepository.Setup(x => x.Delete(It.IsAny<Truck>())).ReturnsAsync(true);
 
             TruckHandler _handler = new TruckHandler(mockContextRepository.Object, mockTruckRepository.Object);
 
@@ -182,6 +200,8 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             Assert.True(_return.Success);
             Assert.Equal(HttpStatusCode.OK, _return.Code);
             Assert.True((bool)_return.Data);
+
+
         }
 
         [Fact]
@@ -222,6 +242,7 @@ namespace CadastraCaminhao.Tests.CadastraCaminhao.Domain.Handlers
             Truck _truck = new Truck();
             _truck.Id = "45f65a56-e30d-4a61-8e40-e14a4cc35ce9";
             _truck.Color = "Red";
+            _truck.Description = "desciption";
             _truck.Image = "img1.jpg";
             _truck.Model = EnumModel.FH;
             _truck.ModelYear = DateTime.Now.Year;
