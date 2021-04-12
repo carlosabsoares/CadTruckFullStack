@@ -23,8 +23,7 @@ namespace CadastraCaminhao.Domain.Commands
                     .IsNotNullOrEmpty(Description, "Description", "Description not be null.")
                     .IsTrue(Guid.TryParse(Id, out _), "Id", "This Id is not a valid guid.")
                     .IsBetween(ModelYear, DateTime.Now.Year, (DateTime.Now.Year + 1), "ModelYear", "The model year must be the current year or the year after.")
-                    .IsNotNullOrEmpty(Model.ToString(), "Model", "Model not be null.")
-                    .IsTrue(EnumModel.IsDefined(typeof(EnumModel), Model), "Model", "Model not valid.")
+                    .IsBetween(Model, 1, 2, "Model", "Model not valid.")
             );
         }
     }

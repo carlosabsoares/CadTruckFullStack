@@ -5,6 +5,7 @@ using CadastraCaminhao.Domain.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace CadastraCaminhao.Api.Controllers
@@ -16,7 +17,7 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Adiciona caminhão</summary>
         /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
         [HttpPost("truck/create")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<GenericCommandResult> PostTruck(
             [FromBody] TruckInsertCommand command,
@@ -28,7 +29,7 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Altera caminhão</summary>
         /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
         [HttpPut("truck/update")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<GenericCommandResult> PutTruck(
             [FromBody] TruckUpdateCommand command,
@@ -40,12 +41,18 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Apaga caminhão</summary>
         /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
         [HttpDelete("truck/delete")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<GenericCommandResult> DeleteTruck(
             [FromQuery] string id,
             [FromServices] IHandler<TruckDeleteCommand> handler)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                GenericCommandResult commandResult = new GenericCommandResult(false, HttpStatusCode.NoContent, null);
+                return commandResult;
+            }
+
             TruckDeleteCommand command = new TruckDeleteCommand();
             command.Id = id;
 
@@ -55,7 +62,7 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Lista de todos caminhão</summary>
         /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
         [HttpGet("truck/getAll")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(typeof(IList<Truck>), 200)]
         public async Task<IList<Truck>> GetAllTruck(
             [FromServices] ITruckRepository repository)
@@ -66,12 +73,15 @@ namespace CadastraCaminhao.Api.Controllers
         /// <summary>Busca de um caminhão</summary>
         /// <returns>Retorna boolean indicando sucesso ou falha na operação</returns>
         [HttpGet("truck/getById")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(typeof(Truck), 200)]
         public async Task<Truck> GetByIdTruck(
             [FromQuery] string id,
             [FromServices] ITruckRepository repository)
         {
+            if (string.IsNullOrEmpty(id))
+                return null;
+
             return await repository.GetById(id);
         }
     }
