@@ -23,7 +23,7 @@ export default function Login() {
   if (token) return <Redirect to="/truck" />
 
   return (
-    <div></div>
+    <div>
       <label htmlFor="login">
         <input type="text" name="login" onChange={(e) => setUserLogin(e.target.value)}/>
       </label>
